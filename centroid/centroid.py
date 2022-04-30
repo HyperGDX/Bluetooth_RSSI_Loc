@@ -19,4 +19,4 @@ def cal_intersection_2_cir(cir1, cir2):
     """
     x1, y1, r1 = cir1
     x2, y2, r2 = cir2
-    x3 = 1
+    x3 = 2
