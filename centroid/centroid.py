@@ -5,10 +5,12 @@ from pprint import pprint
 import sympy
 from sympy import symbols
 
+cirs_parse = [[(0, 0), 1], [(1, 1), 0.5], [(0.5, 0.5), 1]]
+
 
 def gen_circles(circles):
     """
-    :param circles:
+    :param circles: [[(cir_x,cir_y),r]...]
     :return: list <class 'shapely.geometry.polygon.Polygon'>
     """
 
@@ -20,21 +22,12 @@ def gen_circles(circles):
         """
         return geometry.Point(circle_pos[:2]).buffer(r)
 
-    # [[(cir_x,cir_y),r],[(cir_x,cir_y),r],[(cir_x,cir_y),r]]
     circles_lst = []
     for circle in circles:
         circles_lst.append(gen_circle(circle[0], circle[1]))
     return circles_lst
 
 
-# inter = cir1.intersection(cir2)
-# # <class 'shapely.geometry.polygon.Polygon'>
-# print(type(inter))
-# print(inter.centroid)
-# x, y = inter.exterior.xy
-# plt.plot(x, y)
-# plt.show()
-cirs_parse = [[(0, 0), 1], [(1, 1), 0.5], [(0.5, 0.5), 1]]
 cirs = gen_circles(cirs_parse)
 for cir in cirs:
     x, y = cir.exterior.xy

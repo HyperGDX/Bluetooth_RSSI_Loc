@@ -40,8 +40,9 @@ def cal_one_object_top_n(rssi_lst):
     # [73.2114 77.9977 80.9921 83.1766 60.1057]
 
     # 取所有rssi大小顺序的下标
-    rssi_nd_all_argsort = np.argsort(rssi_nd)
+    rssi_nd_all_argsort = np.argsort(rssi_nd)[::-1]
     # [4 0 1 2 3]
+
 
     # 截取前TOPN个
     rssi_nd_topn_idx = rssi_nd_all_argsort[0:Top_N]
@@ -55,6 +56,7 @@ def cal_one_object_top_n(rssi_lst):
 idx, topn = cal_one_object_top_n(test_rssi_lsts[0])
 # [60.1057 73.2114 77.9977 80.9921]
 # [4 0 1 2]
+
 
 
 # A = -45
