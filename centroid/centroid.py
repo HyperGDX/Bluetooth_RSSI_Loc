@@ -34,3 +34,4 @@ def cal_intersection_2_cir(cir1, cir2):
 
 a = cal_intersection_2_cir((0, 0, 1), (0.5, 0.5, 1))
 print(a)
+print(111)
