@@ -50,6 +50,10 @@ def draw_inter(cirs):
     inter = cal_inter(cirs)
     x, y = inter.exterior.xy
     plt.plot(x, y)
+    centroid = inter.centroid
+    xx, yy = centroid.x, centroid.y
+    plt.plot(xx, yy, '^')
+
     plt.show()
 
 
