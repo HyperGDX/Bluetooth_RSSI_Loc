@@ -37,31 +37,35 @@ def cal_one_object_top_n(rssi_lst):
     # lst转np.nd
     rssi_nd = np.array(rssi_lst)
     rssi_nd = -rssi_nd
-    # [73.2114 77.9977 80.9921 83.1766 60.1057]
-
     # 取所有rssi大小顺序的下标
     rssi_nd_all_argsort = np.argsort(rssi_nd)[::-1]
-    # [4 0 1 2 3]
-
-
     # 截取前TOPN个
     rssi_nd_topn_idx = rssi_nd_all_argsort[0:Top_N]
     rssi_nd_topn = rssi_nd[rssi_nd_topn_idx]
-    # print(rssi_nd_topn, rssi_nd_topn_idx)
-    # [60.1057 73.2114 77.9977 80.9921]
-    # [4 0 1 2]
+    # [3 2 1 0]
+    # [83.1766 80.9921 77.9977 73.2114]
     return rssi_nd_topn_idx, rssi_nd_topn
 
 
-idx, topn = cal_one_object_top_n(test_rssi_lsts[0])
-# [60.1057 73.2114 77.9977 80.9921]
-# [4 0 1 2]
+def cal_d(rssi):
+    A = -45
+    n = 4
+    d = 10 ** ((A - rssi) / (10 * n))
+    return d
 
 
+def gen_circles_parse():
+    topn_idx, topn_rssi = cal_one_object_top_n(test_rssi_lsts[0])
+    circles_parse = []
+    for i in range(len(topn_idx)):
+        circles_parse.append([b_ls[topn_idx[i]], cal_d(-topn_rssi[i])*1.2])
+    return circles_parse
 
-# A = -45
-# n = 4
-#
+# def cal_d(rssi):
+#     A = -45
+#     n = 4
+#     d = 10 ** ((A - rssi) / (10 * n))
+#     return d
 # test_rssi_d_n_max = []
 # for rssi in test_rssi_n_max:
 #     d = 10 ** ((A - rssi) / (10 * n))

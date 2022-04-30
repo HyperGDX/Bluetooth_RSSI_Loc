@@ -4,8 +4,11 @@ import numpy as np
 from pprint import pprint
 import sympy
 from sympy import symbols
+import top_n
 
-cirs_parse = [[(0, 0), 1], [(1, 1), 0.5], [(0.5, 0.5), 1]]
+# cirs_parse = [[(0, 0), 1], [(1, 1), 0.5], [(0.5, 0.5), 1]]
+cirs_parse = top_n.gen_circles_parse()
+print(cirs_parse)
 
 
 def gen_circles(circles):
@@ -46,7 +49,7 @@ def cal_inter(circles):
 def draw_inter(cirs):
     inter = cal_inter(cirs)
     x, y = inter.exterior.xy
-    plt.plot(x, y, 'r')
+    plt.plot(x, y)
     plt.show()
 
 
