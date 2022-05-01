@@ -24,4 +24,3 @@ def cal_rssis(b_ls, o_ls):
             rssi_o_lst.append(round(cal_rssi(o_l, b_l), 4))
         rssi_lst.append(rssi_o_lst)
     return rssi_lst
-
