@@ -1,14 +1,9 @@
 from shapely import geometry
 import matplotlib.pyplot as plt
-import numpy as np
-from pprint import pprint
-import sympy
-from sympy import symbols
 import top_n
 
+
 # cirs_parse = [[(0, 0), 1], [(1, 1), 0.5], [(0.5, 0.5), 1]]
-cirs_parse = top_n.gen_circles_parse()
-print(cirs_parse)
 
 
 def gen_circles(circles):
@@ -31,33 +26,42 @@ def gen_circles(circles):
     return circles_lst
 
 
-cirs = gen_circles(cirs_parse)
-for cir in cirs:
-    x, y = cir.exterior.xy
-    plt.plot(x, y)
-
-
-def cal_inter(circles):
-    inter = circles[0]
-    for i in range(1, len(circles)):
-        inter = inter.intersection(circles[i])
-        # x, y = inter.exterior.xy
-        # plt.plot(x, y)
+def cal_inter():
+    # while not inter:
+    inter = None
+    up_rate = 0.9
+    while not inter:
+        up_rate += 0.05
+        circles_parse = top_n.gen_circles_parse(up_rate)
+        circles_geo = gen_circles(circles_parse)
+        inter = circles_geo[0]
+        for i in range(1, len(circles_geo)):
+            inter = inter.intersection(circles_geo[i])
+        if inter:
+            print(circles_parse)
+            draw_circles(circles_geo)
+            print(up_rate)
     return inter
 
 
-def draw_inter(cirs):
-    inter = cal_inter(cirs)
+def draw_circles(circles_geo):
+    for cir in circles_geo:
+        x, y = cir.exterior.xy
+        plt.plot(x, y)
+
+
+def draw_inter():
+    inter = cal_inter()
     x, y = inter.exterior.xy
     plt.plot(x, y)
     centroid = inter.centroid
     xx, yy = centroid.x, centroid.y
     plt.plot(xx, yy, '^')
-
+    print(xx,yy)
     plt.show()
 
 
-draw_inter(cirs)
+draw_inter()
 
 # def cal_intersection_2_cir(cir1, cir2):
 #     """

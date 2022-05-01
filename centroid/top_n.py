@@ -54,11 +54,11 @@ def cal_d(rssi):
     return d
 
 
-def gen_circles_parse():
+def gen_circles_parse(up_rate=1.0):
     topn_idx, topn_rssi = cal_one_object_top_n(test_rssi_lsts[0])
     circles_parse = []
     for i in range(len(topn_idx)):
-        circles_parse.append([b_ls[topn_idx[i]], cal_d(-topn_rssi[i])*1.2])
+        circles_parse.append([b_ls[topn_idx[i]], cal_d(-topn_rssi[i])*up_rate])
     return circles_parse
 
 # def cal_d(rssi):
