@@ -1,22 +1,25 @@
 import centroid
 import gen_rssi
+import parse
+import read_data
+import cal_func
 import top_n
 
-Top_N = top_n.Top_N
-b_ls = gen_rssi.b_ls
-o_l = gen_rssi.o_ls[0]
+Top_N = parse.Top_N
+b_ls = read_data.beacon_loc_lst_tuple
+o_l = (3, 4)
 
 cal_rssi = gen_rssi.cal_rssi
-test_rssi_lsts = top_n.test_rssi_lsts
-init_inter = centroid.cal_inter(test_rssi_lsts[0])
+raw_rssi = cal_func.get_one_rssi_nd(0)
+init_inter = centroid.cal_inter(raw_rssi)
 init_centroid = centroid.cal_centroid(init_inter)
 print("init_centroid: ", init_centroid)
 print("raw_pos:       ", o_l)
-init_2pos_dist = gen_rssi.cal_2pos_dist(o_l, init_centroid)
+init_2pos_dist = cal_func.cal_2pos_dist(o_l, init_centroid)
 print("init_2pos_dist: ", init_2pos_dist)
 
-topn_idx, topn_rssi = top_n.cal_one_object_top_n(top_n.test_rssi_lsts[0])
-# print(topn_idx, topn_rssi)
+topn_idx, topn_rssi = top_n.cal_one_object_top_n(raw_rssi)
+print(topn_idx, topn_rssi)
 
 topn_idx_r = topn_idx[::-1]
 topn_rssi_r = topn_rssi[::-1]
@@ -27,9 +30,10 @@ amended_topn_rssi_r = []
 def amend_beacons():
     for i in range(Top_N):
         cur_beacon_loc = b_ls[topn_idx_r[i]]
-        amended_topn_rssi_r.append(round(cal_rssi(cur_beacon_loc, init_centroid), 4))
+        amended_topn_rssi_r.append(round(cal_func.cal_rssi(cur_beacon_loc, init_centroid), 4))
 
 
+print("***********")
 amend_beacons()
 print("init_topn_rssi:      ", topn_rssi)
 print("amended_topn_rssi_r: ", amended_topn_rssi_r[::-1])
