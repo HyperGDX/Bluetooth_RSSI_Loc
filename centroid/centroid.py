@@ -3,42 +3,26 @@ import matplotlib.pyplot as plt
 import top_n
 
 
-# cirs_parse = [[(0, 0), 1], [(1, 1), 0.5], [(0.5, 0.5), 1]]
-
-
-def gen_circles(circles):
-    """
-    :param circles: [[(cir_x,cir_y),r]...]
-    :return: list <class 'shapely.geometry.polygon.Polygon'>
-    """
-
+def gen_circles_geo(circle_parse):
     def gen_circle(circle_pos, r):
-        """
-        :param circle_pos: (pos_x1,pos_y1)
-        :param r: radius
-        :return: <class 'shapely.geometry.polygon.Polygon'>
-        """
         return geometry.Point(circle_pos[:2]).buffer(r)
 
     circles_lst = []
-    for circle in circles:
+    for circle in circle_parse:
         circles_lst.append(gen_circle(circle[0], circle[1]))
     return circles_lst
 
 
 ###############################################################
 # 最重要的部分
-def cal_inter():
-    """
-    逐渐增加幅度计算交集
-    :return: geo
-    """
+def cal_inter(rssi_lst):
+    # 逐渐增加幅度计算交集
     inter = None
     up_rate = 0.9
     while not inter:
         up_rate += 0.05
-        circles_parse = top_n.gen_circles_parse(up_rate)
-        circles_geo = gen_circles(circles_parse)
+        circles_parse = top_n.gen_circles_parse(rssi_lst, up_rate)
+        circles_geo = gen_circles_geo(circles_parse)
         inter = circles_geo[0]
         for i in range(1, len(circles_geo)):
             inter = inter.intersection(circles_geo[i])
@@ -50,11 +34,6 @@ def cal_inter():
 
 
 def cal_centroid(inter):
-    """
-
-    :param inter: 输入geo型inter
-    :return: xx,yy
-    """
     inter = inter
     centroid = inter.centroid
     xx, yy = centroid.x, centroid.y

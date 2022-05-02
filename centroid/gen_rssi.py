@@ -1,26 +1,25 @@
+import cal_func
+import os
+import test_data
+import pandas as pd
 import numpy as np
-import math
-
-# m个基站
-b_ls = [(0, 0), (0, 10), (10, 0), (10, 10), (5, 5)]
-# n个待测
-o_ls = [(3, 4), (6, 6)]
 
 
-def cal_2pos_dist(l1, l2):
-    return math.sqrt((l1[0] - l2[0]) ** 2 + (l1[1] - l2[1]) ** 2)
-
-
-def cal_rssi(b_l, o_l, A=-47, n=3.75):
-    t = cal_2pos_dist(b_l, o_l)
-    return A - 10 * n * math.log10(t)
-
-
-def cal_rssis(b_ls, o_ls):
+def cal_rssi(beacon_pos_lst, object_pos):
     rssi_lst = []
-    for o_l in o_ls:
-        rssi_o_lst = []
-        for b_l in b_ls:
-            rssi_o_lst.append(round(cal_rssi(o_l, b_l), 4))
-        rssi_lst.append(rssi_o_lst)
+    for b_l in beacon_pos_lst:
+        rssi_lst.append(cal_func.cal_rssi(object_pos, b_l))
     return rssi_lst
+
+
+# TODO:写到文件里，对应将来的输入文件
+rssi_data = []
+for o in test_data.o_ls:
+    rssi_lst = cal_rssi(test_data.b_ls, o)
+    rssi_data.append(rssi_lst)
+rssi_df = pd.DataFrame(np.array(rssi_data))
+rssi_df.columns = [test_data.b_ls]
+print(rssi_df)
+root_pth = os.pardir
+data_csv_pth = os.path.join(root_pth, "data", "test_rssi.csv")
+rssi_df.to_csv(path_or_buf=data_csv_pth, index=False)
