@@ -7,8 +7,8 @@ b_ls = [(0, 0), (0, 10), (10, 0), (10, 10), (5, 5)]
 o_ls = [(3, 4), (6, 6)]
 
 
-def cal_2pos_dist(b_l, o_l):
-    return math.sqrt((b_l[0] - o_l[0]) ** 2 + (b_l[1] - o_l[1]) ** 2)
+def cal_2pos_dist(l1, l2):
+    return math.sqrt((l1[0] - l2[0]) ** 2 + (l1[1] - l2[1]) ** 2)
 
 
 def cal_rssi(b_l, o_l, A=-47, n=3.75):
