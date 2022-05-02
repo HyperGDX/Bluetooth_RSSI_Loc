@@ -28,7 +28,7 @@ def gen_circles(circles):
 
 ###############################################################
 # 最重要的部分
-def cal_inter():
+def cal_inter(rssi_lst):
     """
     逐渐增加幅度计算交集
     :return: geo
@@ -37,7 +37,7 @@ def cal_inter():
     up_rate = 0.9
     while not inter:
         up_rate += 0.05
-        circles_parse = top_n.gen_circles_parse(up_rate)
+        circles_parse = top_n.gen_circles_parse(rssi_lst, up_rate)
         circles_geo = gen_circles(circles_parse)
         inter = circles_geo[0]
         for i in range(1, len(circles_geo)):
