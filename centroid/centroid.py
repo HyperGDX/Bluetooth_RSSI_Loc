@@ -26,8 +26,13 @@ def gen_circles(circles):
     return circles_lst
 
 
+###############################################################
+# 最重要的部分
 def cal_inter():
-    # while not inter:
+    """
+    逐渐增加幅度计算交集
+    :return: geo
+    """
     inter = None
     up_rate = 0.9
     while not inter:
@@ -44,24 +49,32 @@ def cal_inter():
     return inter
 
 
+def cal_centroid(inter):
+    """
+
+    :param inter: 输入geo型inter
+    :return: xx,yy
+    """
+    inter = inter
+    centroid = inter.centroid
+    xx, yy = centroid.x, centroid.y
+    return xx, yy
+
+
 def draw_circles(circles_geo):
     for cir in circles_geo:
         x, y = cir.exterior.xy
         plt.plot(x, y)
 
 
-def draw_inter():
-    inter = cal_inter()
+def draw_inter_centroid(inter):
+    inter = inter
     x, y = inter.exterior.xy
     plt.plot(x, y)
-    centroid = inter.centroid
-    xx, yy = centroid.x, centroid.y
-    plt.plot(xx, yy, '^')
-    print(xx,yy)
+    cx, cy = cal_centroid(inter)
+    plt.plot(cx, cy, '^')
+    print(cx, cy)
     plt.show()
-
-
-draw_inter()
 
 # def cal_intersection_2_cir(cir1, cir2):
 #     """
