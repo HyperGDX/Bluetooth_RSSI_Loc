@@ -4,24 +4,24 @@ import top_n
 
 
 def gen_circles_geo(circle_parse):
-    def gen_circle(circle_pos, r):
-        return geometry.Point(circle_pos[:2]).buffer(r)
-
+    # def gen_circle(circle_pos, r):
+    #     return geometry.Point(circle_pos[:2]).buffer(r)
     circles_lst = []
     for circle in circle_parse:
-        circles_lst.append(gen_circle(circle[0], circle[1]))
+        # circles_lst.append(gen_circle(circle[0], circle[1]))
+        circles_lst.append(geometry.Point(circle[0]).buffer(circle[1]))
     return circles_lst
 
 
 ###############################################################
 # 最重要的部分
-def cal_inter(rssi_lst):
+def cal_inter(rssi_lst, beacon_lst):
     # 逐渐增加幅度计算交集
     inter = None
-    up_rate = 0.9
+    up_rate = 0.95
     while not inter:
         up_rate += 0.05
-        circles_parse = top_n.gen_circles_parse(rssi_lst, up_rate)
+        circles_parse = top_n.gen_circles_parse(rssi_lst, beacon_lst, up_rate)
         circles_geo = gen_circles_geo(circles_parse)
         inter = circles_geo[0]
         for i in range(1, len(circles_geo)):
