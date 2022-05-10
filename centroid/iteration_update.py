@@ -27,7 +27,6 @@ print(topn_idx, topn_rssi)
 
 topn_idx_r = topn_idx[::-1]
 topn_rssi_r = topn_rssi[::-1]
-
 amended_topn_rssi_r = []
 
 
