@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dffa64aa-4a0f-45a9-ad71-233b814aa834" name="Changes" comment="5.11" />
+    <list default="true" id="dffa64aa-4a0f-45a9-ad71-233b814aa834" name="Changes" comment="5.11">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5.11celiang/read_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/5.11celiang/read_data.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +42,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="RunManager" selected="Python.read_data">
     <configuration name="iteration_update" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -104,7 +107,7 @@
       <workItem from="1652240250741" duration="494000" />
       <workItem from="1652243977194" duration="625000" />
       <workItem from="1652244694171" duration="3835000" />
-      <workItem from="1652252404628" duration="308000" />
+      <workItem from="1652252404628" duration="5492000" />
     </task>
     <task id="LOCAL-00001" summary="5.11">
       <created>1652252568886</created>
@@ -120,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652252577343</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="5.11">
+      <created>1652252722413</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652252722413</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +154,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Bluetooth_RSSI_Loc$iteration_update.coverage" NAME="iteration_update Coverage Results" MODIFIED="1652244199574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/centroid" />
-    <SUITE FILE_PATH="coverage/Bluetooth_RSSI_Loc$read_data.coverage" NAME="read_data Coverage Results" MODIFIED="1652247708250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/5.11celiang" />
+    <SUITE FILE_PATH="coverage/Bluetooth_RSSI_Loc$read_data.coverage" NAME="read_data Coverage Results" MODIFIED="1652258010898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/5.11celiang" />
   </component>
 </project>
