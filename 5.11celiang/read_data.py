@@ -20,13 +20,10 @@ for i in range(len(raw_df)):
         t.append(cur_t)
         d.append(int(idx_d_map[cur_idx]))
         r.append(-1 * int(cur_r))
-d_r_nd = np.array([d, r], dtype=np.int16)
+d_r_nd = np.array([d, r], dtype=np.float32)
+
 
 # 3*3067
-
-one_d_r = d_r_nd[:, :10]
-print("111")
-print(one_d_r)
 
 
 def d2r_func(x, a, b):
@@ -39,8 +36,5 @@ def cal_a_n(d_r):
     return round(a4, 4), round(b4, 4)
 
 
-print(cal_a_n(one_d_r))
-print(cal_a_n(d_r_nd))
 #
 # print(cal_a_n(raw_rssi, o_ls))
-
