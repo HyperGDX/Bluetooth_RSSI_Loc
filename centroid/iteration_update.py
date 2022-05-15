@@ -1,8 +1,7 @@
+import cal_func
 import centroid
-import gen_rssi
 import parse
 import read_data
-import cal_func
 import top_n
 
 Top_N = parse.Top_N
@@ -33,7 +32,8 @@ amended_topn_rssi_r = []
 def amend_beacons():
     for i in range(Top_N):
         cur_beacon_loc = b_ls[topn_idx_r[i]]
-        amended_topn_rssi_r.append(round(cal_func.d2rssi(cal_func.cal_2pos_dist(cur_beacon_loc, init_centroid)), 4))
+        amended_topn_rssi_r.append(
+            round(cal_func.d2rssi(cal_func.cal_2pos_dist(cur_beacon_loc, init_centroid), a=-47, n=3.75), 4))
 
 
 print("***********")
