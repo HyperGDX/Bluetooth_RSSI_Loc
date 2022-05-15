@@ -6,23 +6,34 @@ import mydataset
 
 net = nn.Sequential(
     nn.Linear(1, 16),
-    nn.Sigmoid(),
+    nn.RReLU(),
     nn.Linear(16, 32),
-    nn.Sigmoid(),
-    nn.Linear(32, 32),
-    nn.Sigmoid(),
+    nn.RReLU(),
+    nn.Linear(32, 64),
+    nn.RReLU(),
+    nn.Linear(64, 128),
+    nn.RReLU(),
+    nn.Linear(128, 256),
+    nn.RReLU(),
+    nn.Linear(256, 256),
+    nn.RReLU(),
+    nn.Linear(256, 128),
+    nn.RReLU(),
+    nn.Linear(128, 64),
+    nn.RReLU(),
+    nn.Linear(64, 32),
+    nn.RReLU(),
     nn.Linear(32, 16),
-    nn.Sigmoid(),
+    nn.RReLU(),
     nn.Linear(16, 1)
 )
-
 train_dataset = mydataset.A_N_DataSet()
 train_dataloader = DataLoader(train_dataset, batch_size=64, shuffle=True)
-epochs = 5000
+epochs = 2000
 loss_fun = nn.MSELoss()
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 net = net.to(device)
-optimizer = torch.optim.Adam(net.parameters(), lr=0.01)
+optimizer = torch.optim.Adam(net.parameters(), lr=0.0001)
 best_loss = 1000.0
 
 for epoch in range(epochs):

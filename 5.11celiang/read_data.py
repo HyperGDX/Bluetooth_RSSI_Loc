@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from scipy import optimize
+import matplotlib.pyplot as plt
 
 # 1 3 6 9
 # 11 12 13 14
@@ -10,7 +11,7 @@ idx_d_map = {
     13: 6,
     14: 9
 }
-raw_df = pd.read_csv("../5.11celiang/data/newdata.CSV")
+raw_df = pd.read_csv("5.11celiang/data/newdata.CSV")
 t = []
 d = []
 r = []
@@ -21,8 +22,6 @@ for i in range(len(raw_df)):
         d.append(int(idx_d_map[cur_idx]))
         r.append(-1 * int(cur_r))
 d_r_nd = np.array([d, r], dtype=np.float32)
-
-
 # 3*3067
 
 
@@ -36,5 +35,21 @@ def cal_a_n(d_r):
     return round(a4, 4), round(b4, 4)
 
 
-#
-# print(cal_a_n(raw_rssi, o_ls))
+def draw_curve_img(d_r):
+    x, y = d_r[0], d_r[1]
+    plt.scatter(x, y)
+
+
+def draw_cal_a_n_img(a, b):
+    x = [i for i in range(1, 10)]
+    y = [d2r_func(i, a, b) for i in x]
+    plt.plot(x, y)
+
+
+if __name__ == "__main__":
+    print(d_r_nd.shape)
+    res = cal_a_n(d_r_nd[:, :30])
+    print(res)
+    draw_cal_a_n_img(res[0], res[1])
+    draw_curve_img(d_r_nd[:, :30])
+    plt.show()
